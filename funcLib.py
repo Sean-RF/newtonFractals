@@ -8,6 +8,8 @@ from sympy import I
 import numpy as np
 from matplotlib import pyplot as plt
 
+import numba
+
 z = sympy.symbols('z', complex=True)
 sympy.utilities.codegen.COMPLEX_ALLOWED = True
 
