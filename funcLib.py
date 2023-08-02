@@ -30,7 +30,7 @@ def rootFinderCompiler(expr):
     compExpr = ufuncify(z,iterate,backend='f2py')
     return compExpr
 
-def displayConvergence(expr, xlim, ylim, xres, yres, iterations):
+def displayConvergence(expr, xlim, ylim, xres, yres, iterations, _cmap='inferno'):
     x = np.linspace(xlim[0],xlim[1],xres)
     y = np.linspace(ylim[0],ylim[1],yres)
 
@@ -44,8 +44,11 @@ def displayConvergence(expr, xlim, ylim, xres, yres, iterations):
         z = compExpr(z)
 
     z = np.angle(z).reshape(xres,yres).T
-    plt.imshow(z)
-    plt.xticks(np.linspace(0,xres,5),np.linspace(xlim[0],xlim[1],5))
-    plt.yticks(np.linspace(0,yres,5),-np.linspace(ylim[0],ylim[1],5))
+    plt.imshow(z,cmap=_cmap)
+    # plt.xticks(np.linspace(0,xres,5),np.linspace(xlim[0],xlim[1],5))
+    # plt.yticks(np.linspace(0,yres,5),-np.linspace(ylim[0],ylim[1],5))
+    plt.xticks([])
+    plt.yticks([])
+
 
     plt.show()
